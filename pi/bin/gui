@@ -1,0 +1,17 @@
+#!/bin/bash
+
+WM="openbox-session"
+echo "Start X session with selected window manager"
+PS3="Choose window manager: "
+select option in openbox lxde pi quit
+do
+  case $option in 
+    openbox) WM="openbox-session"; break ;;
+    lxde)    WM="startlxde"; break ;;
+    pi)      WM="startlxde-pi"; break ;;
+    quit)    exit 0 ;;
+    *)       echo 'Huh?' ;;
+  esac
+done
+$(startx "/usr/bin/${WM}")
+exit 0
